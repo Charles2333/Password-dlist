@@ -1,7 +1,7 @@
 #!/bin/bash
 #Raspberry Pi install Kali(script)
 #手动操作的:设置root用户，手动导入字典文件至---/root目录下,ssh手动设置并启动系统守护进程
-
+#sed -i 's/\r$//'
 tablename="kali"  #指定字符串
 echo -e "\032[41m----Kali-linux-----!\032[0m"
 
@@ -43,7 +43,9 @@ apt-get install neofetch iftop fcitx fcitx-googlepinyin  ntpdate  -y
 
 #apt-get update && apt-get upgrade -y  && apt-get dist-upgrade -y apt-get install kali-* -y
 #apt-get clean && apt clean && apt autoclean  #
-
+#Time
+dpkg-reconfigure tzdata
+sleep 3
 cd /root
 mkdir script && cd script/ 
 touch Time
@@ -55,10 +57,11 @@ chmod +x Time
 ./Time
 sleep 4
 cd /etc
+cp -r hosts /root  #beak
 #grep -B5 B是显示匹配行和它前面的5行 -A是显示匹配后和它后面的n行 -C是匹配行和它前后各n行
 #grep -n  顺便输出行号
 hangline=`grep -B2 -n   ' '  hosts|grep 'kali'|awk -F ' ' '{print $2}' |sed 's/-//g'`
-sedcom="${hangline}s/${tablename}/MSF/"
+sedcom="s/${tablename}/MSF/"
 #替换指定行的字符
 sed -i ${sedcom} /etc/hosts
 echo "脚本替换完成！"
