@@ -1,7 +1,6 @@
 #!/bin/bash
 #Raspberry Pi install Kali(script)
 #手动操作的:设置root用户，手动导入字典文件至---/root目录下,ssh手动设置并启动系统守护进程
-#sed -i 's/\r$//'
 tablename="kali"  #指定字符串
 echo -e "\032[41m----Kali-linux-----!\032[0m"
 #VIM
