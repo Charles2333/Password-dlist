@@ -42,7 +42,7 @@ dpkg-reconfigure locales  #选中选中en_US.UTF-8和zh_CN.UTF-8，确定后，�
 
 
 echo -e "\032[41m安装基础软件包!\032[0m"
-apt-get install neofetch iftop fcitx fcitx-googlepinyin  ntpdate  -y 
+apt-get install neofetch iftop fcitx fcitx-googlepinyin htop tmux  ntpdate  -y 
 
 #apt-get update && apt-get upgrade -y  && apt-get dist-upgrade -y apt-get install kali-* -y
 #apt-get clean && apt clean && apt autoclean  #
@@ -68,11 +68,34 @@ sedcom="s/${tablename}/MSF/"
 #替换指定行的字符
 sed -i ${sedcom} /etc/hosts
 echo "脚本替换完成！"
-exit 0
 cd /etc
 rm hostname
 touch hostname
 cat>hostname<<EOF
 MSF
 EOF
+#new update
+touch update
+cat>update<<EOF
+#!/bin/bash
+apt-get update 
+sleep 4
+apt-get upgrade -y && apt-get dist-upgrade -y
+sleep 4
+apt-get install kali-tools-* -y
+sleep 4
+apt-get install kali-linux-* -y
+sleep 4
+apt-get install kali-wallpapers-* -y 
+EOF
+chmod +x update 
+#new clean
+touch Clean
+cat>Clean<<EOF
+#!/bin/bash
+apt-get clean && apt clean && apt autoclean
+EOF
+sleep 4 
+echo -e "\032[41mReboot!\032[0m"
+sleep 2
 reboot
