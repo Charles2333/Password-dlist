@@ -4,7 +4,10 @@
 #sed -i 's/\r$//'
 tablename="kali"  #指定字符串
 echo -e "\032[41m----Kali-linux-----!\032[0m"
-
+#VIM
+mkdir /root/back
+cp -r  /etc/vim/vimrc /root/back/
+sed -i '8i \set fileencodings=utf-8,gb2312,gbk,gb18030\nset termencoding=utf-8\nset encoding=prc'  vimrc
 cd /etc/apt/ && rm sources.list
 touch sources.list
 cat>sources.list<<EOF
@@ -57,7 +60,7 @@ chmod +x Time
 ./Time
 sleep 4
 cd /etc
-cp -r hosts /root  #beak
+cp -r hosts /root/back  #back
 #grep -B5 B是显示匹配行和它前面的5行 -A是显示匹配后和它后面的n行 -C是匹配行和它前后各n行
 #grep -n  顺便输出行号
 hangline=`grep -B2 -n   ' '  hosts|grep 'kali'|awk -F ' ' '{print $2}' |sed 's/-//g'`
