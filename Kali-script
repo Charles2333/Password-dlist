@@ -69,6 +69,7 @@ sedcom="s/${tablename}/MSF/"
 sed -i ${sedcom} /etc/hosts
 echo "脚本替换完成！"
 exit 0
+cd /etc
 rm hostname
 touch hostname
 cat>hostname<<EOF
