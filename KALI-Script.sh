@@ -35,7 +35,6 @@ else
     apt-get install xfonts-intl-chinese -y
 
 fi
-echo "ERROR!!!!"
 dpkg-reconfigure locales  #选中选中en_US.UTF-8和zh_CN.UTF-8，确定后，将en_US.UTF-8 选为默认（空格是选择，Tab是切换，*是选中状态）。
 
 
