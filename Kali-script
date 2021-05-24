@@ -6,6 +6,7 @@ echo -e "\032[41m----Kali-linux-----!\032[0m"
 #VIM
 mkdir /root/back
 cp -r  /etc/vim/vimrc /root/back/
+cd /etc/vim/
 sed -i '8i \set fileencodings=utf-8,gb2312,gbk,gb18030\nset termencoding=utf-8\nset encoding=prc'  vimrc
 cd /etc/apt/ && rm sources.list
 touch sources.list
