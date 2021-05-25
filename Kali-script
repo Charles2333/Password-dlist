@@ -40,7 +40,6 @@ else
 fi
 dpkg-reconfigure locales  #选中选中en_US.UTF-8和zh_CN.UTF-8，确定后，将en_US.UTF-8 选为默认（空格是选择，Tab是切换，*是选中状态）。
 
-
 echo -e "\032[41m安装基础软件包!\032[0m"
 apt-get install neofetch iftop fcitx fcitx-googlepinyin htop tmux  ntpdate  -y 
 
@@ -54,7 +53,7 @@ mkdir script && cd script/
 touch Time
 cat>Time<<EOF
 #!/bin/bash
-sudo ntpdate cn.pool.ntp.org
+sudo ntpdate -u cn.pool.ntp.org #注意：若不加上-u参数， 会出现以下提示：no server suitable for synchronization found  //  -u：从man ntpdate中可以看出-u参数可以越过防火墙与主机同步；
 EOF
 chmod +x Time
 ./Time
@@ -96,6 +95,7 @@ cat>Clean<<EOF
 #!/bin/bash
 apt-get clean && apt clean && apt autoclean
 EOF
+chmod +x Clean
 sleep 4 
 echo -e "\032[41mReboot!\032[0m"
 sleep 2
