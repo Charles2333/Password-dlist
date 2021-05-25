@@ -74,6 +74,7 @@ touch hostname
 cat>hostname<<EOF
 MSF
 EOF
+cd /root/script
 #new update
 touch update
 cat>update<<EOF
